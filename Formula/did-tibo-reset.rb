@@ -5,8 +5,8 @@
 class DidTiboReset < Formula
   desc "Menu bar watcher for Tibo's Codex reset signals"
   homepage "https://github.com/Cirsever/DidTiboReset"
-  url "https://github.com/Cirsever/DidTiboReset/archive/refs/tags/v1.2.1.tar.gz"
-  sha256 "76d291e991ecb57ad6bb00c9ad5bd60908d97aba9d54cbc953cf6f4c4c09ae33"
+  url "https://github.com/Cirsever/DidTiboReset/archive/refs/tags/v1.2.2.tar.gz"
+  sha256 "09a85da48aa30e16fee4fc11032c752eb10f25cfb5b362d6a4fca49a66ba4f13"
 
   depends_on macos: :ventura
   depends_on "python@3.13"
@@ -14,13 +14,12 @@ class DidTiboReset < Formula
   def install
     system "./scripts/package_app.sh", buildpath/"Codex Reset Monitor.app"
     prefix.install buildpath/"Codex Reset Monitor.app"
+    libexec.install "scripts/homebrew_service.sh"
   end
 
   service do
     run [
-      "/usr/bin/open",
-      "-W",
-      "-n",
+      opt_libexec/"homebrew_service.sh",
       opt_prefix/"Codex Reset Monitor.app",
     ]
     environment_variables({
@@ -36,5 +35,6 @@ class DidTiboReset < Formula
   test do
     assert_path_exists prefix/"Codex Reset Monitor.app/Contents/Info.plist"
     assert_path_exists prefix/"Codex Reset Monitor.app/Contents/Resources/python/codex_reset_monitor/__main__.py"
+    assert_predicate libexec/"homebrew_service.sh", :executable?
   end
 end
