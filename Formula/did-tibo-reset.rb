@@ -5,8 +5,8 @@
 class DidTiboReset < Formula
   desc "Menu bar watcher for Tibo's Codex reset signals"
   homepage "https://github.com/Cirsever/DidTiboReset"
-  url "https://github.com/Cirsever/DidTiboReset/archive/refs/tags/v1.2.0.tar.gz"
-  sha256 "aa8de131a2027da7c1e68c7ad87570971bddce1824367a52f823a0bf9ca765e4"
+  url "https://github.com/Cirsever/DidTiboReset/archive/refs/tags/v1.2.1.tar.gz"
+  sha256 "76d291e991ecb57ad6bb00c9ad5bd60908d97aba9d54cbc953cf6f4c4c09ae33"
 
   depends_on macos: :ventura
   depends_on "python@3.13"
